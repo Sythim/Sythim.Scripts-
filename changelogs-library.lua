@@ -56,7 +56,7 @@ function change_logs:txt(n)
         tins(change_logs.lent, #change_logs.lent);
     end;
     
-    nw('['..#change_logs.lent..']' .. n.split .. n.txt);
+    rconsoleerr('['..#change_logs.lent..']' .. n.split .. n.txt);
 
     return self;
 end;

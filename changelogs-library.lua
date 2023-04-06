@@ -1,3 +1,5 @@
+local setmetatable = setmetatable
+
 local n = setmetatable({ }, { __index = function(self, k) return game:GetService(k) end });
 local str_rep = string.rep;
 local replic_nm = 30;
@@ -35,6 +37,7 @@ end
 
 function change_logs:change_log(n)
     local rep_str = str_rep('=', replic_nm);
+    
     do
         if n.en then
             do
@@ -53,7 +56,7 @@ function change_logs:txt(n)
         tins(change_logs.lent, #change_logs.lent);
     end;
     
-    nw('['..#change_logs.lent..']' .. n.split .. n.txt .. n.split);
+    nw('['..#change_logs.lent..']' .. n.split .. n.txt);
 
     return self;
 end;

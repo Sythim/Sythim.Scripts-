@@ -1,6 +1,3 @@
-local setmetatable = setmetatable
-
-local n = setmetatable({ }, { __index = function(self, k) return game:GetService(k) end });
 local str_rep = string.rep;
 local replic_nm = 30;
 local change_logs = { lent = { } };
@@ -9,16 +6,19 @@ local rconsolewarn = rconsolewarn
 local rconsolename = rconsolename
 local rconsoleclear = rconsoleclear
 local tins = table.insert
+local rconsoleerr = rconsoleerr
+local setmetatable = setmetatable
 
 change_logs.__index = change_logs;
 
 function change_logs.new(ac)
     local self = setmetatable({}, change_logs);
     
-    self.terminal_name = n.HttpService:GenerateGUID(false);
+    self.terminal_name = game.HttpService:GenerateGUID(false);
     
     if ac then
         rconsolename(self.terminal_name);
+        
         do
             rconsoleclear();
         end;

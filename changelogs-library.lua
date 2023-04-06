@@ -6,6 +6,7 @@ local change_logs = { lent = { } };
 local rconsolewarn = rconsolewarn
 local rconsolename = rconsolename
 local rconsoleclear = rconsoleclear
+local tins = table.insert
 
 change_logs.__index = change_logs;
 
@@ -26,13 +27,18 @@ function change_logs.new(ac)
     end
 end;
 
+local function nw(...)
+    do
+        rconsolewarn(...)
+    end
+end
 
 function change_logs:change_log(n)
     local rep_str = str_rep('=', replic_nm);
     do
         if n.en then
             do
-                rconsolewarn(rep_str .. ' ' .. n.nm .. ' ' ..  rep_str);
+                nw(rep_str .. ' ' .. n.nm .. ' ' ..  rep_str)
             end;
         end
     end;
@@ -43,11 +49,13 @@ function change_logs:change_log(n)
 end;
 
 function change_logs:txt(n)
-    table.insert(change_logs.lent, #change_logs.lent)
+    do
+        tins(change_logs.lent, #change_logs.lent);
+    end;
     
-    rconsolewarn('['..#change_logs.lent..']' .. n.split .. n.txt .. n.split)
+    nw('['..#change_logs.lent..']' .. n.split .. n.txt .. n.split);
 
     return self;
 end;
 
-return change_logs
+return change_logs;

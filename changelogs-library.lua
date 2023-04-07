@@ -31,7 +31,7 @@ end;
 
 local function nw(...)
     do
-        rconsolewarn(...)
+        rconsoleerr(...)
     end
 end
 
@@ -61,4 +61,4 @@ function change_logs:txt(n)
     return self;
 end;
 
-return change_logs;
+return change_logs

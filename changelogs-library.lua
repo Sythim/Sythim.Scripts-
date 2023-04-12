@@ -1,63 +1,50 @@
-local uuid = game.HttpService:GenerateGUID(true)
-local str = string.rep
-local change_logs = { lent = { } }
+local guid = game.HttpService:GenerateGUID(true)
+local change_logs = { color = '@@GREEN@@', default = '@@WHITE@@' }
+local clear_console = rconsoleclear()
+local str = string.rep('=', 25)
 
 change_logs.__index = change_logs
+
+local setmetatable = setmetatable
+local stfmt = string.format
 
 function change_logs.new(ac)
     local self = setmetatable({ }, change_logs)
 
-    self.terminal_name = uuid
+    self.terminal_name = guid
     
-    if ac then
-        rconsolename(self.terminal_name)
-        
+    rconsolename(self.terminal_name)
+
+    return self
+end
+
+local notify = function(...)
+    local rgb  = change_logs.color
+    local rev = change_logs.default
+    
+    do
+        rconsoleprint(rgb)
+        rconsoleprint(...) 
+        rconsoleprint(rev)
+    end
+end
+
+function change_logs:change_log(n, txt)
+    local rebuild = stfmt(str .. '%s', n.nm .. str)
+
+    if n.en then
         do
-            rconsoleclear()
+            notify(rebuild .. '\n') 
         end
     end
     
-    do
-        return self
-    end
-end
-
-local function notify(...)
-    do
-        rconsolewarn(...)
-    end
-end
-
-function change_logs:change_log(n, rep)
-    local note = (str('=', rep)..' '..n.nm..' '..str('=', rep))
-    
-    do
-        if n.en then
-            do
-                notify(note)
-            end
-        end
-    end
-    
-    do
-        return self
-    end
+    return self
 end
 
 function change_logs:txt(n)
-    local lento = change_logs.lent
-    
-    table.insert(lento, #lento)
-    
-    do
-        local noti = (#lento..' '..n.txt)
-        
-        notify(noti)
-    end
-    
-    do
-        return self
-    end
+    rconsolewarn(n.txt)
+
+    return self
 end
 
 return change_logs

@@ -1,5 +1,5 @@
 --[[
-    no wait functions, no pcalls, and better preformance, this will have an update checker later.
+    another old project i was working on but never finished because im lazy.
     got bored so i figured why not upload some old scripts.
 ]]
 

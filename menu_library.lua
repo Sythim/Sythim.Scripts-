@@ -1,3 +1,5 @@
+-- # // some old library i made a long time ago
+
 local setmetatable = setmetatable;
 local ipairs = ipairs;
 local s = setmetatable({ }, { __index = function(self, k) return game:GetService(k) end });
